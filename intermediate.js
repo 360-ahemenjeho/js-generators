@@ -18,3 +18,16 @@ usersId.next();
 for (let i = 1; i <= 5; i++) {
   console.log(`User ${i}: `, usersId.next(prefix[i - 1]).value);
 }
+
+// if prefix from the first example was going to be fixed, then we will use factory method instead.
+function* makeIdPrefixed(prefix = "") {
+  let id = 1;
+  while (true) {
+    yield `${prefix}${id++}`;
+  }
+}
+
+const usersIdPrefix = makeIdPrefixed("LC-");
+for (let i = 1; i <= 5; i++) {
+  console.log(usersIdPrefix.next().value);
+}
